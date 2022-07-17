@@ -1,0 +1,254 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/ui_parts/PeoplePreview.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/ToolManager.gd" type="Script" id=2]
+[ext_resource path="res://scripts/DataConsumer.gd" type="Script" id=3]
+[ext_resource path="res://assets/theme/UI_Theme.tres" type="Theme" id=4]
+[ext_resource path="res://scenes/ui_parts/FileSelect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ui_parts/DonorCreditScroll.tscn" type="PackedScene" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1618]
+bg_color = Color( 0.176471, 0.145098, 0.207843, 1 )
+
+[sub_resource type="Animation" id=2350]
+resource_name = "show_side_panel"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("SidePanel:margin_left")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -310.0, -79.98, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SidePanel:margin_right")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 230.02, 310.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:side_panel_visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="MainScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+script = ExtResource( 2 )
+side_panel_visible = false
+
+[node name="DataConsumer" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[node name="DonorCreditScroll" parent="." instance=ExtResource( 6 )]
+
+[node name="SidePanel" type="PanelContainer" parent="."]
+anchor_bottom = 1.0
+margin_left = -310.0
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1618 )
+
+[node name="MarginContainer" type="MarginContainer" parent="SidePanel"]
+margin_right = 310.0
+margin_bottom = 600.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SidePanel/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 305.0
+margin_bottom = 600.0
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer"]
+margin_right = 285.0
+margin_bottom = 607.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 285.0
+margin_bottom = 34.0
+text = "Settings"
+align = 1
+
+[node name="Control" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 44.0
+margin_right = 285.0
+margin_bottom = 48.0
+
+[node name="FileSelectCSVData" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 58.0
+margin_right = 285.0
+margin_bottom = 167.0
+button_text = "Choose CSV File"
+file_filters = [ "*.csv" ]
+
+[node name="Control2" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 177.0
+margin_right = 285.0
+margin_bottom = 181.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 191.0
+margin_right = 285.0
+margin_bottom = 226.0
+
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_right = 216.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+text = "Background Colour"
+align = 2
+valign = 1
+
+[node name="BtnBackgroundColour" type="ColorPickerButton" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 221.0
+margin_right = 285.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 64, 0 )
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+edit_alpha = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 236.0
+margin_right = 285.0
+margin_bottom = 271.0
+
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 216.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+text = "Text Colour"
+align = 2
+
+[node name="BtnFontColour" type="ColorPickerButton" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 221.0
+margin_right = 285.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 64, 0 )
+align = 0
+expand_icon = true
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
+[node name="Separator" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 281.0
+margin_right = 285.0
+margin_bottom = 285.0
+
+[node name="SpinBoxSecondsPerLine" type="SpinBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 295.0
+margin_right = 285.0
+margin_bottom = 330.0
+step = 0.1
+allow_greater = true
+align = 2
+prefix = "Seconds Per Line: "
+
+[node name="Separator4" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 340.0
+margin_right = 285.0
+margin_bottom = 344.0
+
+[node name="Label2" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 354.0
+margin_right = 285.0
+margin_bottom = 388.0
+text = "Donor Categories"
+align = 1
+
+[node name="GridContainer" type="GridContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 398.0
+margin_right = 285.0
+margin_bottom = 510.0
+columns = 2
+
+[node name="UseCategoryOneOff" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/GridContainer"]
+margin_right = 147.0
+margin_bottom = 34.0
+text = "One Off"
+
+[node name="UseCategoryMonthly" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/GridContainer"]
+margin_left = 152.0
+margin_right = 258.0
+margin_bottom = 34.0
+text = "Monthly"
+
+[node name="UseCategoryComms" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/GridContainer"]
+margin_top = 39.0
+margin_right = 147.0
+margin_bottom = 73.0
+text = "Commission"
+
+[node name="UseCategoryShop" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/GridContainer"]
+margin_left = 152.0
+margin_top = 39.0
+margin_right = 258.0
+margin_bottom = 73.0
+text = "Shop"
+
+[node name="UseCategoryUnassigned" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/GridContainer"]
+margin_top = 78.0
+margin_right = 147.0
+margin_bottom = 112.0
+hint_tooltip = "A category for all remaining donors in the CSV, not assigned to another category"
+text = "Unassigned"
+
+[node name="Separator2" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 520.0
+margin_right = 285.0
+margin_bottom = 524.0
+
+[node name="PeoplePreview" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 534.0
+margin_right = 285.0
+margin_bottom = 593.0
+data_consumer_path = NodePath("../../../../../DataConsumer")
+
+[node name="Separator3" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 603.0
+margin_right = 285.0
+margin_bottom = 607.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/show_side_panel = SubResource( 2350 )
+
+[connection signal="data_consume_complete" from="DataConsumer" to="." method="_on_DataConsumer_data_consume_complete"]
+[connection signal="data_consume_complete" from="DataConsumer" to="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/PeoplePreview" method="update_data"]
+[connection signal="file_chosen" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/FileSelectCSVData" to="." method="_on_FileSelectCSVData_file_chosen"]
+[connection signal="color_changed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/BtnBackgroundColour" to="." method="_on_background_colour_changed"]
+[connection signal="color_changed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2/BtnFontColour" to="." method="_on_font_colour_changed"]
+[connection signal="value_changed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/SpinBoxSecondsPerLine" to="." method="_on_SpinBoxSecondsPerLine_value_changed"]

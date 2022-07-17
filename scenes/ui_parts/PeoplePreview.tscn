@@ -1,0 +1,137 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/ui_parts/PeoplePreview.gd" type="Script" id=1]
+[ext_resource path="res://assets/theme/UI_Theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/icons/visibility_FILL0_wght400_GRAD0_opsz48.svg" type="Texture" id=3]
+[ext_resource path="res://assets/icons/visibility_off_FILL0_wght400_GRAD0_opsz48.svg" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScrollContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScrollContainer:size_flags_vertical")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:size_flags_vertical")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Show"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScrollContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScrollContainer:size_flags_vertical")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 5, 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:size_flags_vertical")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 3 ]
+}
+
+[node name="PanelContainer" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+segment_name = "Donors"
+texture_visible = ExtResource( 4 )
+texture_hidden = ExtResource( 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_top = 283.0
+margin_right = 843.0
+margin_bottom = 317.0
+size_flags_horizontal = 3
+text = "Donors"
+align = 2
+
+[node name="BtnToggleView" type="Button" parent="HBoxContainer"]
+margin_left = 848.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+text = "Toggle View"
+icon = ExtResource( 3 )
+
+[node name="ScrollContainer" type="PanelContainer" parent="."]
+visible = false
+margin_top = 64.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 1024.0
+margin_bottom = 536.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/Show = SubResource( 2 )
+
+[connection signal="pressed" from="HBoxContainer/BtnToggleView" to="." method="_on_BtnToggleView_pressed"]
