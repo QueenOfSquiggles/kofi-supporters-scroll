@@ -9,7 +9,7 @@ jobs:
         id: download-windows
         uses: dsaltares/fetch-gh-release-asset@master
         with:
-          file: kofi-supporter-scroll-tool-windows.zip
+          file: Windows.Desktop.zip
         env:
           GITHUB_TOKEN: "${{ secrets.GH_CREDENTIALS }}"
       - name: deploy to itch.io (Windows)
@@ -29,7 +29,7 @@ jobs:
         uses: dsaltares/fetch-gh-release-asset@master
         with:
           version: "latest"
-          file: kofi-supporter-scroll-tool-mac.zip
+          file: Mac.OSX.zip 
           token: "${{ secrets.GH_CREDENTIALS }}"
       - name: deploy to itch.io (MacOS)
         uses: josephbmanley/butler-publish-itchio-action@master
@@ -48,7 +48,7 @@ jobs:
         uses: dsaltares/fetch-gh-release-asset@master
         with:
           version: "latest"
-          file: kofi-supporter-scroll-tool-linux.zip
+          file: LinuxX11.zip 
           token: "${{ secrets.GH_CREDENTIALS }}"
       - name: deploy to itch.io (Linux)
         uses: josephbmanley/butler-publish-itchio-action@master
