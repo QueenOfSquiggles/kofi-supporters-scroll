@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/ui_parts/PeoplePreview.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/ToolManager.gd" type="Script" id=2]
@@ -6,9 +6,68 @@
 [ext_resource path="res://assets/theme/UI_Theme.tres" type="Theme" id=4]
 [ext_resource path="res://scenes/ui_parts/FileSelect.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/ui_parts/DonorCreditScroll.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/HideableElement.gd" type="Script" id=7]
+[ext_resource path="res://scripts/ui_parts/ToggleOptions.gd" type="Script" id=8]
+[ext_resource path="res://assets/theme/elements/panel_container_simple.tres" type="StyleBox" id=9]
+[ext_resource path="res://scripts/Serializer.gd" type="Script" id=10]
+[ext_resource path="res://assets/icons/save_FILL0_wght400_GRAD0_opsz48.svg" type="Texture" id=11]
+[ext_resource path="res://assets/icons/file_upload_FILL0_wght400_GRAD0_opsz48_rounded.svg" type="Texture" id=12]
+[ext_resource path="res://assets/icons/play_arrow_FILL0_wght400_GRAD0_opsz48.svg" type="Texture" id=13]
+[ext_resource path="res://assets/icons/restart_alt_FILL0_wght400_GRAD0_opsz48.svg" type="Texture" id=14]
+[ext_resource path="res://assets/icons/settings_FILL0_wght400_GRAD0_opsz48.svg" type="Texture" id=15]
+[ext_resource path="res://scripts/ui_parts/BtnFontChoose.gd" type="Script" id=16]
+[ext_resource path="res://scenes/dialogs/FontSelectDialog.tscn" type="PackedScene" id=17]
 
-[sub_resource type="StyleBoxFlat" id=1618]
-bg_color = Color( 0.176471, 0.145098, 0.207843, 1 )
+[sub_resource type="Animation" id=2351]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationControls:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationControls:margin_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -92.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PresetsControls:margin_left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PresetsControls:margin_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -248.0 ]
+}
 
 [sub_resource type="Animation" id=2350]
 resource_name = "show_side_panel"
@@ -49,6 +108,54 @@ tracks/2/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimationControls:margin_left")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -85.488, -137 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AnimationControls:margin_right")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -137, -51.512, 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("PresetsControls:margin_left")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -187.2, -300.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("PresetsControls:margin_right")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -300.0, -112.8, 0.0 ]
+}
 
 [node name="MainScreen" type="Control"]
 anchor_right = 1.0
@@ -60,18 +167,44 @@ side_panel_visible = false
 [node name="DataConsumer" type="Node" parent="."]
 script = ExtResource( 3 )
 
+[node name="Serializer" type="Node" parent="."]
+script = ExtResource( 10 )
+serialized_nodes = [ NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer/LineMonthly"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer2/LineOneOff"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer3/LineComms"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer4/LineShop"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer5/LineUnassigned"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/PlaybackSettings/HBoxContainer/SpinSecondsPerLine"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer/BtnBackgroundColour"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer2/BtnFontColour"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/CheckBox"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer3/BtnHeadingFontColour"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions/UseCategoryOneOff"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions/UseCategoryMonthly"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions/UseCategoryComms"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions/UseCategoryShop"), NodePath("../SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions/UseCategoryUnassigned") ]
+
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.247059, 0.247059, 0.247059, 1 )
 
-[node name="DonorCreditScroll" parent="." instance=ExtResource( 6 )]
+[node name="CenterContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Control" type="Control" parent="CenterContainer"]
+margin_right = 84.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="DonorCreditScroll" parent="CenterContainer" instance=ExtResource( 6 )]
+margin_left = 89.0
+margin_right = 934.0
+mouse_filter = 1
+size_flags_horizontal = 3
+data_consumer_path = NodePath("../../DataConsumer")
+
+[node name="Control2" type="Control" parent="CenterContainer"]
+margin_left = 939.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
 
 [node name="SidePanel" type="PanelContainer" parent="."]
 anchor_bottom = 1.0
-margin_left = -310.0
+margin_right = 310.0
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 1618 )
+custom_styles/panel = ExtResource( 9 )
 
 [node name="MarginContainer" type="MarginContainer" parent="SidePanel"]
 margin_right = 310.0
@@ -85,74 +218,281 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = 305.0
 margin_bottom = 600.0
+follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer"]
 margin_right = 285.0
-margin_bottom = 607.0
+margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
-[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
 margin_right = 285.0
-margin_bottom = 34.0
+margin_bottom = 48.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 73.0
+margin_right = 121.0
+margin_bottom = 48.0
+texture = ExtResource( 15 )
+
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 126.0
+margin_top = 5.0
+margin_right = 212.0
+margin_bottom = 43.0
 text = "Settings"
 align = 1
 
 [node name="Control" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 44.0
+margin_top = 58.0
 margin_right = 285.0
-margin_bottom = 48.0
+margin_bottom = 66.0
+
+[node name="BtnRefresh" type="Button" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 76.0
+margin_right = 285.0
+margin_bottom = 115.0
+hint_tooltip = "Apllies modified settings"
+text = "Regenerate"
 
 [node name="FileSelectCSVData" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 58.0
+margin_top = 125.0
 margin_right = 285.0
-margin_bottom = 167.0
+margin_bottom = 227.0
 button_text = "Choose CSV File"
 file_filters = [ "*.csv" ]
 
 [node name="Control2" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 177.0
+margin_top = 237.0
 margin_right = 285.0
-margin_bottom = 181.0
+margin_bottom = 245.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 191.0
+[node name="BtnToggleTitles" type="Button" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 255.0
 margin_right = 285.0
-margin_bottom = 226.0
+margin_bottom = 294.0
+text = "Titles"
 
-[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_right = 216.0
+[node name="VBoxContainer" type="VBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
+margin_top = 304.0
+margin_right = 285.0
+margin_bottom = 519.0
+script = ExtResource( 7 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+margin_right = 285.0
+margin_bottom = 39.0
+
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 86.0
+margin_bottom = 38.0
+text = "Monthly"
+align = 2
+
+[node name="LineMonthly" type="LineEdit" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 91.0
+margin_right = 285.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+text = "Monthly Donors"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+margin_top = 44.0
+margin_right = 285.0
+margin_bottom = 83.0
+
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 84.0
+margin_bottom = 38.0
+text = "One-Off"
+align = 2
+
+[node name="LineOneOff" type="LineEdit" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 89.0
+margin_right = 285.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+text = "One-Off Donors"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+margin_top = 88.0
+margin_right = 285.0
+margin_bottom = 127.0
+
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 78.0
+margin_bottom = 38.0
+text = "Comms"
+align = 2
+
+[node name="LineComms" type="LineEdit" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 83.0
+margin_right = 285.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+text = "Commissions"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+margin_top = 132.0
+margin_right = 285.0
+margin_bottom = 171.0
+
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_right = 56.0
+margin_bottom = 38.0
+text = "Shop"
+align = 2
+
+[node name="LineShop" type="LineEdit" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 61.0
+margin_right = 285.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+text = "Shop Purchases"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+margin_top = 176.0
+margin_right = 285.0
+margin_bottom = 215.0
+
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer5"]
+margin_right = 118.0
+margin_bottom = 38.0
+text = "Unassigned"
+align = 2
+
+[node name="LineUnassigned" type="LineEdit" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer5"]
+margin_left = 123.0
+margin_right = 285.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+text = "And all other donations!"
+
+[node name="Control3" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 304.0
+margin_right = 285.0
+margin_bottom = 312.0
+
+[node name="BtnTogglePlaybackSettings" type="Button" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 322.0
+margin_right = 285.0
+margin_bottom = 361.0
+text = "Playback Settings"
+
+[node name="PlaybackSettings" type="VBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
+margin_top = 341.0
+margin_right = 285.0
+margin_bottom = 376.0
+script = ExtResource( 7 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/PlaybackSettings"]
+margin_right = 285.0
+margin_bottom = 35.0
+
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/PlaybackSettings/HBoxContainer"]
+margin_right = 184.0
 margin_bottom = 34.0
+size_flags_horizontal = 3
+text = "Seconds Per Line"
+align = 2
+
+[node name="SpinSecondsPerLine" type="SpinBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/PlaybackSettings/HBoxContainer"]
+margin_left = 189.0
+margin_right = 285.0
+margin_bottom = 35.0
+max_value = 5.0
+step = 0.01
+value = 0.3
+
+[node name="Seperator" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 371.0
+margin_right = 285.0
+margin_bottom = 379.0
+
+[node name="BtnFontOptions" type="Button" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 389.0
+margin_right = 285.0
+margin_bottom = 428.0
+text = "Font Options"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
+margin_top = 438.0
+margin_right = 285.0
+margin_bottom = 652.0
+script = ExtResource( 7 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2"]
+margin_right = 285.0
+margin_bottom = 39.0
+
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_right = 216.0
+margin_bottom = 38.0
 size_flags_horizontal = 3
 text = "Background Colour"
 align = 2
 valign = 1
 
-[node name="BtnBackgroundColour" type="ColorPickerButton" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="BtnBackgroundColour" type="ColorPickerButton" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 221.0
 margin_right = 285.0
-margin_bottom = 35.0
+margin_bottom = 39.0
 rect_min_size = Vector2( 64, 0 )
 color = Color( 0.247059, 0.247059, 0.247059, 1 )
 edit_alpha = false
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 236.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2"]
+margin_top = 44.0
 margin_right = 285.0
-margin_bottom = 271.0
+margin_bottom = 83.0
 
-[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_right = 216.0
-margin_bottom = 34.0
+margin_bottom = 38.0
 size_flags_horizontal = 3
 text = "Text Colour"
 align = 2
 
-[node name="BtnFontColour" type="ColorPickerButton" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="BtnFontColour" type="ColorPickerButton" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+margin_left = 221.0
+margin_right = 285.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 64, 0 )
+align = 0
+expand_icon = true
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
+[node name="CheckBox" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2"]
+margin_top = 88.0
+margin_right = 285.0
+margin_bottom = 126.0
+text = "Use alt heading colour"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2"]
+visible = false
+margin_top = -124.0
+margin_right = 285.0
+margin_bottom = -89.0
+script = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
+margin_right = 216.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+text = "Heading Colour"
+align = 2
+
+[node name="BtnHeadingFontColour" type="ColorPickerButton" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 221.0
 margin_right = 285.0
 margin_bottom = 35.0
@@ -162,93 +502,221 @@ expand_icon = true
 color = Color( 1, 1, 1, 1 )
 edit_alpha = false
 
-[node name="Separator" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 281.0
+[node name="FontBody" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2"]
+margin_top = 131.0
 margin_right = 285.0
-margin_bottom = 285.0
+margin_bottom = 170.0
 
-[node name="SpinBoxSecondsPerLine" type="SpinBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 295.0
-margin_right = 285.0
-margin_bottom = 330.0
-step = 0.1
-allow_greater = true
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/FontBody"]
+margin_right = 188.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+text = "Body Font"
 align = 2
-prefix = "Seconds Per Line: "
 
-[node name="Separator4" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 340.0
+[node name="BtnFontBody" type="Button" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/FontBody"]
+margin_left = 193.0
 margin_right = 285.0
-margin_bottom = 344.0
+margin_bottom = 39.0
+text = "CHOOSE"
+script = ExtResource( 16 )
+packed_font_dialog = ExtResource( 17 )
 
-[node name="Label2" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 354.0
+[node name="FontHeading" type="HBoxContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2"]
+margin_top = 175.0
 margin_right = 285.0
-margin_bottom = 388.0
+margin_bottom = 214.0
+
+[node name="Label" type="Label" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/FontHeading"]
+margin_right = 188.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+text = "Body Font"
+align = 2
+
+[node name="BtnFontHeading" type="Button" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/FontHeading"]
+margin_left = 193.0
+margin_right = 285.0
+margin_bottom = 39.0
+text = "CHOOSE"
+script = ExtResource( 16 )
+packed_font_dialog = ExtResource( 17 )
+
+[node name="Separator" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 438.0
+margin_right = 285.0
+margin_bottom = 446.0
+
+[node name="BtnDonorCatagories" type="Button" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 456.0
+margin_right = 285.0
+margin_bottom = 495.0
 text = "Donor Categories"
-align = 1
 
-[node name="GridContainer" type="GridContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 398.0
+[node name="ToggleOptions" type="GridContainer" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
+margin_top = 512.0
 margin_right = 285.0
-margin_bottom = 510.0
+margin_bottom = 624.0
 columns = 2
+script = ExtResource( 8 )
 
-[node name="UseCategoryOneOff" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/GridContainer"]
+[node name="UseCategoryOneOff" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions"]
 margin_right = 147.0
 margin_bottom = 34.0
+pressed = true
 text = "One Off"
 
-[node name="UseCategoryMonthly" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/GridContainer"]
+[node name="UseCategoryMonthly" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions"]
 margin_left = 152.0
 margin_right = 258.0
 margin_bottom = 34.0
+pressed = true
 text = "Monthly"
 
-[node name="UseCategoryComms" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/GridContainer"]
+[node name="UseCategoryComms" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions"]
 margin_top = 39.0
 margin_right = 147.0
 margin_bottom = 73.0
+pressed = true
 text = "Commission"
 
-[node name="UseCategoryShop" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/GridContainer"]
+[node name="UseCategoryShop" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions"]
 margin_left = 152.0
 margin_top = 39.0
 margin_right = 258.0
 margin_bottom = 73.0
+pressed = true
 text = "Shop"
 
-[node name="UseCategoryUnassigned" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/GridContainer"]
+[node name="UseCategoryUnassigned" type="CheckBox" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions"]
 margin_top = 78.0
 margin_right = 147.0
 margin_bottom = 112.0
 hint_tooltip = "A category for all remaining donors in the CSV, not assigned to another category"
+pressed = true
 text = "Unassigned"
 
 [node name="Separator2" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 520.0
+margin_top = 505.0
 margin_right = 285.0
-margin_bottom = 524.0
+margin_bottom = 513.0
 
 [node name="PeoplePreview" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 534.0
+margin_top = 523.0
 margin_right = 285.0
-margin_bottom = 593.0
+margin_bottom = 582.0
 data_consumer_path = NodePath("../../../../../DataConsumer")
 
 [node name="Separator3" type="HSeparator" parent="SidePanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 603.0
+margin_top = 592.0
 margin_right = 285.0
-margin_bottom = 607.0
+margin_bottom = 600.0
+
+[node name="AnimationControls" type="PanelContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -143.0
+margin_right = -92.0
+
+[node name="MarginContainer" type="MarginContainer" parent="AnimationControls"]
+margin_right = 137.0
+margin_bottom = 143.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AnimationControls/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 127.0
+margin_bottom = 133.0
+
+[node name="BtnPlay" type="Button" parent="AnimationControls/MarginContainer/VBoxContainer"]
+margin_right = 117.0
+margin_bottom = 59.0
+hint_tooltip = "Plays from the start"
+text = "Play"
+icon = ExtResource( 13 )
+
+[node name="BtnReset" type="Button" parent="AnimationControls/MarginContainer/VBoxContainer"]
+margin_top = 64.0
+margin_right = 117.0
+margin_bottom = 123.0
+hint_tooltip = "Quick scrolls to the top"
+text = "Reset"
+icon = ExtResource( 14 )
+
+[node name="PresetsControls" type="PanelContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_top = 23.0
+margin_right = -248.0
+margin_bottom = 232.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PresetsControls"]
+margin_right = 299.0
+margin_bottom = 217.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PresetsControls/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 289.0
+margin_bottom = 207.0
+
+[node name="BtnSaveSettings" type="Button" parent="PresetsControls/MarginContainer/VBoxContainer"]
+margin_right = 279.0
+margin_bottom = 59.0
+text = "Save Settings To File"
+icon = ExtResource( 11 )
+
+[node name="BtnLoadSettings" type="Button" parent="PresetsControls/MarginContainer/VBoxContainer"]
+margin_top = 64.0
+margin_right = 279.0
+margin_bottom = 123.0
+text = "Load Settings From File"
+icon = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="PresetsControls/MarginContainer/VBoxContainer"]
+margin_top = 128.0
+margin_right = 279.0
+margin_bottom = 197.0
+text = "Press TAB or ESC to toggle view"
+autowrap = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2351 )
 anims/show_side_panel = SubResource( 2350 )
 
 [connection signal="data_consume_complete" from="DataConsumer" to="." method="_on_DataConsumer_data_consume_complete"]
 [connection signal="data_consume_complete" from="DataConsumer" to="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/PeoplePreview" method="update_data"]
+[connection signal="data_loaded" from="Serializer" to="." method="_on_Serializer_data_loaded"]
+[connection signal="pressed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/BtnRefresh" to="." method="_on_BtnRefresh_pressed"]
 [connection signal="file_chosen" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/FileSelectCSVData" to="." method="_on_FileSelectCSVData_file_chosen"]
-[connection signal="color_changed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/BtnBackgroundColour" to="." method="_on_background_colour_changed"]
-[connection signal="color_changed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2/BtnFontColour" to="." method="_on_font_colour_changed"]
-[connection signal="value_changed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/SpinBoxSecondsPerLine" to="." method="_on_SpinBoxSecondsPerLine_value_changed"]
+[connection signal="pressed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/BtnToggleTitles" to="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer" method="toggle_visibility"]
+[connection signal="pressed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/BtnTogglePlaybackSettings" to="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/PlaybackSettings" method="toggle_visibility"]
+[connection signal="pressed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/BtnFontOptions" to="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2" method="toggle_visibility"]
+[connection signal="color_changed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer/BtnBackgroundColour" to="." method="_on_background_colour_changed"]
+[connection signal="color_changed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer2/BtnFontColour" to="." method="_on_font_colour_changed"]
+[connection signal="toggled" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/CheckBox" to="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer3" method="set_visibility"]
+[connection signal="color_changed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer3/BtnHeadingFontColour" to="." method="_on_heading_font_colour_changed"]
+[connection signal="pressed" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/BtnDonorCatagories" to="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions" method="toggle_visibility"]
+[connection signal="toggled" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions/UseCategoryOneOff" to="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions" method="_on_UseCategoryOneOff_toggled"]
+[connection signal="toggled" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions/UseCategoryMonthly" to="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions" method="_on_UseCategoryMonthly_toggled"]
+[connection signal="toggled" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions/UseCategoryComms" to="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions" method="_on_UseCategoryComms_toggled"]
+[connection signal="toggled" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions/UseCategoryShop" to="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions" method="_on_UseCategoryShop_toggled"]
+[connection signal="toggled" from="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions/UseCategoryUnassigned" to="SidePanel/MarginContainer/ScrollContainer/VBoxContainer/ToggleOptions" method="_on_UseCategoryUnassigned_toggled"]
+[connection signal="pressed" from="AnimationControls/MarginContainer/VBoxContainer/BtnPlay" to="." method="_on_BtnPlay_pressed"]
+[connection signal="pressed" from="AnimationControls/MarginContainer/VBoxContainer/BtnPlay" to="CenterContainer/DonorCreditScroll" method="_on_BtnPlay_pressed"]
+[connection signal="pressed" from="AnimationControls/MarginContainer/VBoxContainer/BtnReset" to="CenterContainer/DonorCreditScroll" method="_on_BtnReset_pressed"]
+[connection signal="pressed" from="PresetsControls/MarginContainer/VBoxContainer/BtnSaveSettings" to="Serializer" method="save_data"]
+[connection signal="pressed" from="PresetsControls/MarginContainer/VBoxContainer/BtnLoadSettings" to="Serializer" method="load_data"]

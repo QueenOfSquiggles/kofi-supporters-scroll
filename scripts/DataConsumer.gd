@@ -2,6 +2,7 @@ extends Node
 class_name DataConsumer
 
 # Bit-Wise booleans, allows for any combination to be true
+# 0000 -> no donation type, generally invalid
 const BIT_DONATION_ONCE := 1 # 0001
 const BIT_DONATION_MONTHLY := 2 # 0010
 const BIT_DONATION_COMMISSION := 4 # 0100
@@ -33,14 +34,14 @@ func consume_data_from(path : String) -> void:
 		entry.name = elements[0]
 		entry.email = elements[1]
 		var donor_bits := 0
-		if (bool(elements[2])):
-			donor_bits |= BIT_DONATION_ONCE
-		if (bool(elements[3])):
-			donor_bits |= BIT_DONATION_MONTHLY
-		if (bool(elements[4])):
-			donor_bits |= BIT_DONATION_COMMISSION
-		if (bool(elements[5])):
-			donor_bits |= BIT_DONATION_SHOP
+		if (elements[2] as String).to_lower() == "true":
+			donor_bits = donor_bits | BIT_DONATION_ONCE
+		if (elements[3] as String).to_lower() == "true":
+			donor_bits = donor_bits | BIT_DONATION_MONTHLY
+		if (elements[4] as String).to_lower() == "true":
+			donor_bits = donor_bits | BIT_DONATION_COMMISSION
+		if (elements[5] as String).to_lower() == "true":
+			donor_bits = donor_bits | BIT_DONATION_SHOP
 		entry.donor_type = donor_bits
 		entry.last_donation_date = elements[6]
 		entry.amount = float(elements[7])
@@ -70,6 +71,8 @@ func get_shop_purchase_donors() -> Dictionary:
 func match_donor_type(criteria : int) -> Dictionary:
 	var result := {}
 	for entry in data.values():
-		if entry.donor & criteria != 0:
+		var check_value :int = entry.donor_type & criteria
+		if entry.donor_type & criteria != 0:
+			print("Check Value: ", check_value)
 			result[entry.name] = (entry as Entry)
 	return result

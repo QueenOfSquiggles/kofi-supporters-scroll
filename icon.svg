@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 135.46667 135.46667"
+   version="1.1"
+   id="svg990"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="icon.svg"
+   inkscape:export-filename="/home/nessa/Documents/Programming/Godot/Projects/Repos/kofi-supporters-scroll/icon.png"
+   inkscape:export-xdpi="192.00002"
+   inkscape:export-ydpi="192.00002"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview992"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="false"
+     units="px"
+     inkscape:zoom="1.133165"
+     inkscape:cx="167.23072"
+     inkscape:cy="207.38374"
+     inkscape:window-width="1920"
+     inkscape:window-height="1032"
+     inkscape:window-x="1920"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     width="512px">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1057" />
+  </sodipodi:namedview>
+  <defs
+     id="defs987">
+    <marker
+       style="overflow:visible"
+       id="DotL"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotL"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,5.92,0.8)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path1228" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Tail"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Tail"
+       inkscape:isstock="true">
+      <g
+         transform="scale(-1.2)"
+         id="g1215">
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.8;stroke-linecap:round"
+           d="M -3.8048674,-3.9585227 0.54352094,0"
+           id="path1203" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.8;stroke-linecap:round"
+           d="M -1.2866832,-3.9585227 3.0617053,0"
+           id="path1205" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.8;stroke-linecap:round"
+           d="M 1.3053582,-3.9585227 5.6537466,0"
+           id="path1207" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.8;stroke-linecap:round"
+           d="M -3.8048674,4.1775838 0.54352094,0.21974226"
+           id="path1209" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.8;stroke-linecap:round"
+           d="M -1.2866832,4.1775838 3.0617053,0.21974226"
+           id="path1211" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.8;stroke-linecap:round"
+           d="M 1.3053582,4.1775838 5.6537466,0.21974226"
+           id="path1213" />
+      </g>
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3406">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:6.61458;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+         d="m 104.11301,18.837353 c 27.26077,-0.111617 26.50517,19.511507 26.75104,51.821957 0.28006,36.80306 -3.93377,45.94366 -26.75104,44.98728"
+         id="path1315"
+         sodipodi:nodetypes="csc" />
+      <rect
+         style="fill:#ffffff;stroke:#020202;stroke-width:13.22916667;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:2.04094;stroke-opacity:0.99938965;paint-order:stroke fill markers;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect884"
+         width="80.665001"
+         height="96.809235"
+         x="23.448015"
+         y="18.837353" />
+      <path
+         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:3.56692;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 54.373774,107.46648 c 0,0 -15.020283,-16.1649 -16.036154,-21.297392 -1.01587,-5.132493 -1.411568,-11.635306 5.283557,-11.399297 5.90375,0.208112 7.624132,11.45623 7.624132,11.45623 0,0 -0.05685,-14.326276 6.133942,-11.887348 6.19079,2.438928 8.099906,4.086955 7.099828,10.639702 -1.000077,6.552748 -10.105305,22.488105 -10.105305,22.488105 z"
+         id="path1867"
+         sodipodi:nodetypes="czsczzc" />
+      <path
+         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:3.56692;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 87.508663,89.47793 c 0,0 -15.020283,-16.1649 -16.036154,-21.297392 -1.01587,-5.132493 -1.411568,-11.635306 5.283557,-11.399297 5.90375,0.208112 7.624132,11.45623 7.624132,11.45623 0,0 -0.05685,-14.326276 6.133942,-11.887348 6.19079,2.438928 8.099906,4.086955 7.099828,10.639702 C 96.613891,73.542573 87.508663,89.47793 87.508663,89.47793 Z"
+         id="path3064"
+         sodipodi:nodetypes="czsczzc" />
+      <path
+         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:3.56692;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 56.058497,62.179079 c 0,0 -15.020283,-16.1649 -16.036154,-21.297392 -1.01587,-5.132493 -1.411568,-11.635306 5.283557,-11.399297 5.90375,0.208112 7.624132,11.45623 7.624132,11.45623 0,0 -0.05685,-14.326276 6.133942,-11.887348 6.19079,2.438928 8.099906,4.086955 7.099828,10.639702 -1.000077,6.552748 -10.105305,22.488105 -10.105305,22.488105 z"
+         id="path3066"
+         sodipodi:nodetypes="czsczzc" />
+    </g>
+  </g>
+</svg>

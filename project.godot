@@ -13,16 +13,38 @@ _global_script_classes=[ {
 "class": "DataConsumer",
 "language": "GDScript",
 "path": "res://scripts/DataConsumer.gd"
+}, {
+"base": "WindowDialog",
+"class": "FontSelectDialog",
+"language": "GDScript",
+"path": "res://scripts/dialogs/FontSelectDialog.gd"
+}, {
+"base": "Control",
+"class": "HideableElement",
+"language": "GDScript",
+"path": "res://scenes/HideableElement.gd"
+}, {
+"base": "HideableElement",
+"class": "ToggleOptions",
+"language": "GDScript",
+"path": "res://scripts/ui_parts/ToggleOptions.gd"
 } ]
 _global_script_class_icons={
-"DataConsumer": ""
+"DataConsumer": "",
+"FontSelectDialog": "",
+"HideableElement": "",
+"ToggleOptions": ""
 }
 
 [application]
 
 config/name="KoFi Supporters Scroll"
 run/main_scene="res://scenes/MainScreen.tscn"
-config/icon="res://icon.png"
+config/icon="res://icon.svg"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [input]
 
@@ -35,4 +57,5 @@ toggle_settings_panel={
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"

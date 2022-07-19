@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/theme/UI_Theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/font/Roboto.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/font/noto/NotoSans.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/font/noto/NotoSansDisplay.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/font/noto/NotoSansMono.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/font/noto/NotoSerif.tres" type="DynamicFont" id=6]
+[ext_resource path="res://assets/font/noto/NotoSerifDisplay.tres" type="DynamicFont" id=7]
+[ext_resource path="res://scripts/dialogs/FontSelectDialog.gd" type="Script" id=8]
+
+[node name="FontSelectDialog" type="WindowDialog"]
+margin_left = 100.0
+margin_top = 101.0
+margin_right = 886.0
+margin_bottom = 470.0
+theme = ExtResource( 1 )
+popup_exclusive = true
+window_title = "Choose Font"
+script = ExtResource( 8 )
+options_root_path = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 776.0
+margin_bottom = 359.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 766.0
+margin_bottom = 349.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+margin_right = 766.0
+margin_bottom = 349.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BtnRoboto" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_right = 766.0
+margin_bottom = 35.0
+custom_fonts/font = ExtResource( 2 )
+text = "Roboto"
+
+[node name="BtnNotoSans" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 40.0
+margin_right = 766.0
+margin_bottom = 79.0
+custom_fonts/font = ExtResource( 3 )
+text = "Noto Sans"
+
+[node name="BtnNotoSansDisplay" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 84.0
+margin_right = 766.0
+margin_bottom = 123.0
+custom_fonts/font = ExtResource( 4 )
+text = "Noto Sans Display"
+
+[node name="BtnNotoSansMono" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 128.0
+margin_right = 766.0
+margin_bottom = 167.0
+custom_fonts/font = ExtResource( 5 )
+text = "Noto Sans Mono"
+
+[node name="BtnNotoSerif" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 172.0
+margin_right = 766.0
+margin_bottom = 211.0
+custom_fonts/font = ExtResource( 6 )
+text = "Noto Serif"
+
+[node name="BtnNotoSerifDisplay" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 216.0
+margin_right = 766.0
+margin_bottom = 255.0
+custom_fonts/font = ExtResource( 7 )
+text = "Noto Serif Display"
