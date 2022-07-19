@@ -19,7 +19,7 @@ jobs:
           CHANNEL: windows
           ITCH_GAME: kofi-supporter-scroll-tool
           ITCH_USER: queenofsquiggles
-          PACKAGE: kofi-supporter-scroll-tool-windows.zip
+          PACKAGE: Windows.Desktop.zip
           VERSION: ${{ steps.download-windows.outputs.version }}
   release_macos:
     runs-on: ubuntu-latest
@@ -38,7 +38,7 @@ jobs:
           CHANNEL: mac
           ITCH_GAME: kofi-supporter-scroll-tool
           ITCH_USER: queenofsquiggles
-          PACKAGE: kofi-supporter-scroll-tool-mac.zip
+          PACKAGE: Mac.OSX.zip 
           VERSION: ${{ steps.download-macos.outputs.version }}
   release_linux:
     runs-on: ubuntu-latest
@@ -57,5 +57,5 @@ jobs:
           CHANNEL: linux
           ITCH_GAME: kofi-supporter-scroll-tool
           ITCH_USER: queenofsquiggles
-          PACKAGE: kofi-supporter-scroll-tool-linux.zip
+          PACKAGE: LinuxX11.zip 
           VERSION: ${{ steps.download-linux.outputs.version }}
